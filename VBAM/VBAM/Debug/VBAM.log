@@ -1,0 +1,23 @@
+﻿Build started 12/13/2013 1:00:19 PM.
+     1>Project "C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\VBAM\VBAM.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\VBAM.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt VBAM.cpp
+         VBAM.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\Debug\VBAM.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\VBAM\External\opencv\lib" opencv_core247d.lib opencv_imgproc247d.lib opencv_highgui247d.lib opencv_ml247d.lib opencv_video247d.lib opencv_features2d247d.lib opencv_calib3d247d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\Debug\VBAM.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\Debug\VBAM.lib" /MACHINE:X86 Debug\EmptyPass.obj
+         Debug\ImagePass.obj
+         Debug\main.obj
+         Debug\VBAM.obj
+         Debug\VoteManager.obj
+         Debug\VotePass.obj
+         VBAM.vcxproj -> C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\Debug\VBAM.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\VBAM.unsuccessfulbuild".
+         Touching "Debug\VBAM.lastbuildstate".
+     1>Done Building Project "C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\VBAM\VBAM.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:02.90
