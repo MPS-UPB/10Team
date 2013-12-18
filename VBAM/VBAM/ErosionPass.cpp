@@ -4,6 +4,7 @@
 
 ErosionPass::ErosionPass(void)
 {
+	ImagePass::filterName = "Erosion filter";
 }
 
 
@@ -19,7 +20,7 @@ void ErosionPass::processImage(cv::Mat image, cv::Mat &confidence)
 	cv::erode(image, erodedImage, cv::Mat());
 	cv::dilate(erodedImage, dilatedImage, cv::Mat());
 	
-	cv::imwrite("ceva4.png", dilatedImage);
+	//cv::imwrite("ceva5.png", dilatedImage);
 	
 
 	//Compari fiecare pixel si cresti/scazi confidenta dupa ce criterii vrei
@@ -33,9 +34,9 @@ void ErosionPass::processImage(cv::Mat image, cv::Mat &confidence)
 			float conf = getConfidence(confidence, i, j);
 
 			if(color == otherColor)
-				conf += 50;
-			else
-				conf -=50;
+				conf *= 2;
+			//else
+				//conf -=50;
 
 			setConfidence(confidence, i, j, conf);
 		}

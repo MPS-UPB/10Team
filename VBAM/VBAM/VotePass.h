@@ -9,7 +9,7 @@ public:
 	~VotePass(void);
 
 	void addPass(ImagePass *pass);
-	void run(cv::Mat &image, cv::Mat &confidence);
+	void run(cv::Mat &image, cv::Mat &confidence, std::string imageName);
 
 private:
 	std::vector<ImagePass*> passes;
