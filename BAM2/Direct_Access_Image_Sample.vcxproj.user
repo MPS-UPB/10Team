@@ -6,7 +6,7 @@
     <LocalDebuggerEnvironment>D:\OpenCV2.4.2\opencv\build\x86\vc10\bin</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>C:\Users\Dyablo\Desktop\Binarizare3\Binarizare3\img\H02.png  C:\Users\Dyablo\Desktop\teoBwF.tif C:\Users\Dyablo\Desktop\teoCONFwF.tif</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Users\Dyablo\Desktop\test_casa.jpg  C:\Users\Dyablo\Desktop\casa.tif C:\Users\Dyablo\Desktop\casaCONFwF.tif</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>D:\OpenCV2.4.2\opencv\build\x86\vc10\bin
 $(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>

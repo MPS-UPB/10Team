@@ -13,7 +13,7 @@
 //===========================================================================
 //===========================================================================
 
-// alloc BYTE matrix
+// BYTE matrix -> 256 valori (grayscale)
 BYTE** my_byte_alloc(int x, int y) {
 	BYTE **rez = (BYTE**)malloc(x * sizeof(BYTE*));
 	for (int i = 0; i < x; i++) {
@@ -22,7 +22,7 @@ BYTE** my_byte_alloc(int x, int y) {
 	return rez;
 }
 
-// alloc bool matrix
+//  bool matrix -> 2 valori (alb-negru)
 bool** my_bool_alloc(int x, int y) {
 	bool **rez = (bool**)malloc(x * sizeof(bool*));
 	for (int i = 0; i < x; i++) {
@@ -31,6 +31,9 @@ bool** my_bool_alloc(int x, int y) {
 	return rez;
 }
 
+//******************
+//* otsu algorithm *
+//******************
 int get_tresh_value (int min_x, int max_x, int min_y, int max_y, unsigned char **matrix){
 
 	// Number of colors
@@ -84,9 +87,11 @@ int get_tresh_value (int min_x, int max_x, int min_y, int max_y, unsigned char *
 		}
 	}
 
+	
 	return max_k;
 }
 
+// media pixelilor pe un anumit tile 
 int getAvg(int x_min, int x_max, int y_min, int y_max, bool **matrix) {
 	int sum = 0;
 
@@ -104,8 +109,10 @@ int getAvg(int x_min, int x_max, int y_min, int y_max, bool **matrix) {
 	return (sum / ((x_max - x_min) * (y_max - y_min)));
 }
 
+
 int print_matrix (_TCHAR* filename, bool **matrix, int ox, int oy) {
 	TCHAR strNewFileName[0x100];
+	// create KImage
 	KImage *pImageBinary = new KImage(oy, ox, 1);
 	if (pImageBinary->BeginDirectAccess()) {
 		for (int i = 0; i < ox; i++) {
@@ -129,6 +136,7 @@ int print_matrix (_TCHAR* filename, bool **matrix, int ox, int oy) {
 	return 0;
 }
 
+//  resize 7->1
 void border_matrix(BYTE ***Matrix, int OX, int OY, int border) {
 	// top
 	for (int i = border - 1; i >= 0; i--) {
@@ -156,6 +164,7 @@ void border_matrix(BYTE ***Matrix, int OX, int OY, int border) {
 	}
 }
 
+// la pixelata
 void border_matrix_bin(bool ***Matrix, int OX, int OY, int border) {
 	// top
 	for (int i = border - 1; i >= 0; i--) {
@@ -200,11 +209,13 @@ int _tmain(int argc, _TCHAR* argv[])
 
     //Load and verify that input image is a True-Color one
     KImage *pImage = new KImage(argv[1]);
-    if (pImage == NULL || !pImage->IsValid() || pImage->GetBPP() != 24)
+    if (pImage == NULL || !pImage->IsValid())
     {
         _tprintf(_T("File %s does is not a valid True-Color image!"), argv[0]);
         return -2;
     }
+//===========================================================================
+//===========================================================================
 
 	// number of tiles -> OX and OY
 	int x_tiles = 1;
@@ -226,11 +237,14 @@ int _tmain(int argc, _TCHAR* argv[])
     }
     
     //Request direct access to image pixels in raw format
+	// BYTE = grayscale = 256 nuante
+	// BOOL = alb-negru = 2   nuante
     BYTE **pDataMatrixGrayscale = NULL;
     if (pImageGrayscale->BeginDirectAccess() && (pDataMatrixGrayscale = pImageGrayscale->GetDataMatrix()) != NULL)
     {
         //If direct access is obtained get image attributes and start processing pixels
-        int bigIntOY = pImageGrayscale->GetWidth();
+        // bigIntOx; bigIntOy -> dimensiunile matricei mari (inainte de resize)
+		int bigIntOY = pImageGrayscale->GetWidth();
         int bigIntOX = pImageGrayscale->GetHeight();
 		int border = 24;
 		int resize = 7;
@@ -244,6 +258,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			smallIntOY++;
 		}
 
+		// smallIntOx; smallIntOy -> dimensiunile matricei mici (dupa resize)
 		BYTE **smallMatrixGrayscale = my_byte_alloc(smallIntOX + 2 * border, smallIntOY + 2 * border);
 		for (int i = border; i < smallIntOX + border; i++) {
 			for (int j = border; j < smallIntOY + border; j++) {
@@ -254,11 +269,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		// border the small matrix
 		border_matrix(&smallMatrixGrayscale, smallIntOX, smallIntOY, border);
 		
+		// space for small matrix
 		bool **smallMatrixBin = my_bool_alloc(smallIntOX, smallIntOY);
+		
+		// for each tile from small matrix
 		for (int i = border; i < smallIntOX + border; i++) {
 			for (int j = border; j < smallIntOY + border; j++) {
 				int max_k = get_tresh_value (i - border, i + border, j - border, j + border, smallMatrixGrayscale);
 				 
+				// set pixel
 				BYTE &PixelAtXY = smallMatrixGrayscale[i][j];
 				if (PixelAtXY < max_k) {
 					//...if closer to black, set to black
@@ -270,7 +289,8 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 		}
 
-		// Resize 1->7
+		// Resize 1->7 
+		// aloc spatiu si initializez pixelata (bigMatrixBinResized = pixelata)
 		bool **bigMatrixBinResized = my_bool_alloc(bigIntOX + 2 * border, bigIntOY + 2 * border);
 		for (int i = border; i < bigIntOX + border; i++) {
 			for (int j = border; j < bigIntOY + border; j++) {
@@ -308,7 +328,6 @@ int _tmain(int argc, _TCHAR* argv[])
 			y_tiles++;
 		}
 
-		//int max_k = get_tresh_value (border, bigIntOX + border, border, bigIntOY + border, bigMatrixGrayscale);
 		bool **bigMatrixBin = my_bool_alloc(bigIntOX, bigIntOY);
 		KImage *pImageConf = new KImage(bigIntOY, bigIntOX, 8);
 		pImageConf->BeginDirectAccess();
@@ -316,7 +335,6 @@ int _tmain(int argc, _TCHAR* argv[])
 		// For each tile
 		for (int tile_x = 0; tile_x < x_tiles; tile_x++) {
 			for (int tile_y = 0; tile_y < y_tiles; tile_y++) {
-
 				// Set the rectangle containing pixels only from the current tile 
 				// (min_x, min_y); (min_x, max_y); (max_x, min_y); (max_x, max_y)
 				int min_x = tile_x * x_tile_size;
@@ -332,12 +350,15 @@ int _tmain(int argc, _TCHAR* argv[])
 				}
 
 				// Get tresh value for the current tile
+
 				int max_k = get_tresh_value (min_x, max_x, min_y, max_y, bigMatrixGrayscale);
 				
 				for (int y = min_y + border; y < max_y + border; y++) {
 					for (int x = min_x + border; x < max_x + border; x++) {
 						int nrColors = 256;
+						// valoare de prag ce depinde tile-ul curent din pixelata
 						int max_k_small = getAvg(x - border, x + border, y - border, y + border, bigMatrixBinResized);
+						// valoarea de prag finala (combinatie intre cele 2 valori de prag - pixelata si initiala)
 						int max_k_new = max_k * 7 / 8 + max_k_small / 8;
 						BYTE &PixelAtXY = bigMatrixGrayscale[x][y];
 						if (PixelAtXY < max_k_new) {
