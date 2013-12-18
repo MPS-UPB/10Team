@@ -213,7 +213,7 @@ cv::Mat VBAM::convertImage(cv::Mat image, bool toFloat)
 	}
 
 	if(toFloat)
-		result.convertTo(result, CV_32FC1);
+		result.convertTo(result, CV_16S);
 
 	return result;
 }
@@ -268,13 +268,6 @@ void VBAM::setOutputImage(std::string outputImage)
 
 void VBAM::vote()
 {
-	//TODO - remove in final implementation
-	LPCWSTR lpPathName = L"test_program";
-	if(!SetCurrentDirectory(lpPathName))
-	{
-		printf("SetCurrentDirectory failed (%d)\n", GetLastError());
-	}
-
 	cv::Mat originalImage = cv::imread(VBAM::inputImage);
 	double timeOut = VBAM::t1 * originalImage.rows * originalImage.cols + VBAM::t2;
 

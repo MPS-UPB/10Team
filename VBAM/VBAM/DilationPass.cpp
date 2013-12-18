@@ -19,8 +19,6 @@ void DilationPass::processImage(cv::Mat image, cv::Mat &confidence)
 	
 	cv::dilate(image, dilatedImage, cv::Mat());
 
-	//cv::imwrite("dilated.png", dilatedImage);
-
 	//Compari fiecare pixel si cresti/scazi confidenta dupa ce criterii vrei
 	for(int i=0; i<image.rows; i++)
 	{
@@ -29,7 +27,7 @@ void DilationPass::processImage(cv::Mat image, cv::Mat &confidence)
 			PixelColor color = getPixelColor(image, i, j);
 			PixelColor otherColor = getPixelColor(dilatedImage, i, j);
 
-			float conf = getConfidence(confidence, i, j);
+			unsigned short conf = getConfidence(confidence, i, j);
 
 			if(color == otherColor)
 				conf *= 1.5;

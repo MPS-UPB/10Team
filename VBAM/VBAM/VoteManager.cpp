@@ -21,7 +21,6 @@ cv::Mat VoteManager::blackModifications;
 cv::Mat VoteManager::whiteModifications;
 
 std::vector<std::thread*> VoteManager::processThreads;
-std::mutex VoteManager::mtx;
 
 VoteManager::VoteManager(void)
 {
@@ -38,11 +37,11 @@ void VoteManager::init(int imageWidth, int imageHeight)
 	VoteManager::imageWidth = imageWidth;
 	VoteManager::imageHeight = imageHeight;
 
-	VoteManager::blackConfidence = cv::Mat(imageWidth, imageHeight, cv::DataType<float>::type, cvScalar(0));
-	VoteManager::whiteConfidence = cv::Mat(imageWidth, imageHeight, cv::DataType<float>::type, cvScalar(0));
+	VoteManager::blackConfidence = cv::Mat(imageWidth, imageHeight, cv::DataType<unsigned short>::type, cvScalar(0));
+	VoteManager::whiteConfidence = cv::Mat(imageWidth, imageHeight, cv::DataType<unsigned short>::type, cvScalar(0));
 
-	VoteManager::blackModifications = cv::Mat(imageWidth, imageHeight, cv::DataType<int>::type, cvScalar(0));
-	VoteManager::whiteModifications = cv::Mat(imageWidth, imageHeight, cv::DataType<int>::type, cvScalar(0));
+	VoteManager::blackModifications = cv::Mat(imageWidth, imageHeight, cv::DataType<unsigned short>::type, cvScalar(0));
+	VoteManager::whiteModifications = cv::Mat(imageWidth, imageHeight, cv::DataType<unsigned short>::type, cvScalar(0));
 
 	VoteManager::imageCount = 0;
 }
@@ -63,8 +62,6 @@ void VoteManager::setVotePass(VotePass *votePass)
 
 void VoteManager::processImage(int index)
 {
-	//mtx.lock();
-
 	cv::Mat image = VoteManager::images[index];
 	cv::Mat confidence = VoteManager::confidences[index];
 	std::string imageName = VoteManager::imageNames[index];
@@ -77,22 +74,20 @@ void VoteManager::processImage(int index)
 		for(int k=0; k<confidence.cols; k++)
 		{
 			PixelColor pixelValue = ImagePass::getPixelColor(image, j, k);
-			float pixelConfidence = confidence.at<float>(j, k);
+			unsigned short pixelConfidence = confidence.at<unsigned short>(j, k);
 
 			if(pixelValue == PIXEL_BLACK)
 			{
-				VoteManager::blackModifications.at<int>(j, k)++;
-				VoteManager::blackConfidence.at<float>(j, k) += pixelConfidence;
+				VoteManager::blackModifications.at<unsigned short>(j, k)++;
+				VoteManager::blackConfidence.at<unsigned short>(j, k) += pixelConfidence;
 			}
 			else
 			{
-				VoteManager::whiteModifications.at<int>(j, k)++;
-				VoteManager::whiteConfidence.at<float>(j, k) += pixelConfidence;
+				VoteManager::whiteModifications.at<unsigned short>(j, k)++;
+				VoteManager::whiteConfidence.at<unsigned short>(j, k) += pixelConfidence;
 			}
 		}
 	}
-
-	//mtx.unlock();
 }
 
 cv::Mat VoteManager::run()
@@ -112,6 +107,7 @@ cv::Mat VoteManager::run()
 	for(std::thread *processThread : VoteManager::processThreads)
 	{
 		processThread->join();
+		delete processThread;
 	}
 
 	printf("Done!\n\n");
@@ -122,11 +118,11 @@ cv::Mat VoteManager::run()
 	{
 		for(int j=0; j<VoteManager::imageHeight; j++)
 		{
-			float pixelBlackConfidence = VoteManager::blackConfidence.at<float>(i, j);
-			float pixelWhiteConfidence = VoteManager::whiteConfidence.at<float>(i, j);
+			float pixelBlackConfidence = VoteManager::blackConfidence.at<unsigned short>(i, j);
+			float pixelWhiteConfidence = VoteManager::whiteConfidence.at<unsigned short>(i, j);
 
-			int pixelBlackModifications = VoteManager::blackModifications.at<int>(i, j);
-			int pixelWhiteModifications = VoteManager::whiteModifications.at<int>(i, j);
+			int pixelBlackModifications = VoteManager::blackModifications.at<unsigned short>(i, j);
+			int pixelWhiteModifications = VoteManager::whiteModifications.at<unsigned short>(i, j);
 
 			if(pixelBlackModifications == 0)
 			{

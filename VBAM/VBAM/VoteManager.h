@@ -41,6 +41,5 @@ private:
 	static cv::Mat whiteModifications;
 
 	static std::vector<std::thread*> processThreads;
-	static std::mutex mtx;
 };
 

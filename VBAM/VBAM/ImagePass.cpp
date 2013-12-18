@@ -10,14 +10,14 @@ ImagePass::~ImagePass(void)
 {
 }
 
-float &ImagePass::getConfidence(cv::Mat confidence, int i, int j)
+unsigned short &ImagePass::getConfidence(cv::Mat confidence, int i, int j)
 {
-	return confidence.at<float>(i, j);
+	return confidence.at<unsigned short>(i, j);
 }
 
-void ImagePass::setConfidence(cv::Mat confidence, int i, int j, float value)
+void ImagePass::setConfidence(cv::Mat confidence, int i, int j, unsigned short value)
 {
-	confidence.at<float>(i, j) = value;
+	confidence.at<unsigned short>(i, j) = value;
 }
 
 PixelColor ImagePass::getPixelColor(cv::Mat image, int i, int j)

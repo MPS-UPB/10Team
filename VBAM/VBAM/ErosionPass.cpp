@@ -19,9 +19,7 @@ void ErosionPass::processImage(cv::Mat image, cv::Mat &confidence)
 	
 	cv::erode(image, erodedImage, cv::Mat());
 	cv::dilate(erodedImage, dilatedImage, cv::Mat());
-	
-	//cv::imwrite("ceva5.png", dilatedImage);
-	
+		
 
 	//Compari fiecare pixel si cresti/scazi confidenta dupa ce criterii vrei
 	for(int i=0; i<image.rows; i++)
@@ -31,12 +29,11 @@ void ErosionPass::processImage(cv::Mat image, cv::Mat &confidence)
 			PixelColor color = getPixelColor(image, i, j);
 			PixelColor otherColor = getPixelColor(dilatedImage, i, j);
 
-			float conf = getConfidence(confidence, i, j);
+			unsigned short conf = getConfidence(confidence, i, j);
 
 			if(color == otherColor)
-				conf *= 2;
-			//else
-				//conf -=50;
+				conf *= 10;
+		
 
 			setConfidence(confidence, i, j, conf);
 		}
