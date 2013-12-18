@@ -1,18 +1,31 @@
-﻿Build started 18.12.2013 07:14:56.
-     1>Project "C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Direct_Access_Image_Sample.vcxproj" on node 2 (build target(s)).
+﻿Build started 18.12.2013 11:33:30.
+     1>Project "C:\Users\Dyablo\Desktop\BAM2\Direct_Access_Image_Sample.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Direct_Access_Image_Sample.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         All outputs are up-to-date.
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\OpenCV2.4.2\opencv\build\include /ID:\OpenCV2.4.2\opencv\build\include\opencv /ID:\OpenCV2.4.2\opencv\build\include\opencv2 /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Debug\bin2.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ID:\OpenCV2.4.2\opencv\build\include /ID:\OpenCV2.4.2\opencv\build\include\opencv /ID:\OpenCV2.4.2\opencv\build\include\opencv2 /ZI /nologo /W4 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\bin2.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Direct_Access_Image.cpp Direct_Access_Image_Sample.cpp
+         Direct_Access_Image_Sample.cpp
+     1>c:\users\dyablo\desktop\bam2\direct_access_image_sample.cpp(346): warning C4244: 'argument' : conversion from 'int' to 'BYTE', possible loss of data
+     1>c:\users\dyablo\desktop\bam2\direct_access_image_sample.cpp(350): warning C4244: 'argument' : conversion from 'int' to 'BYTE', possible loss of data
+     1>c:\users\dyablo\desktop\bam2\direct_access_image_sample.cpp(372): warning C4800: 'BYTE' : forcing value to bool 'true' or 'false' (performance warning)
+     1>c:\users\dyablo\desktop\bam2\direct_access_image_sample.cpp(339): warning C4189: 'nrColors' : local variable is initialized but not referenced
+         Direct_Access_Image.cpp
+         Generating Code...
        Link:
-         All outputs are up-to-date.
-         Direct_Access_Image_Sample.vcxproj -> C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Debug\bin2.exe
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Dyablo\Desktop\BAM2\Debug\bin2.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:D:\OpenCV2.4.2\opencv\build\x86\vc10\lib opencv_core247.lib opencv_imgproc247.lib opencv_highgui247.lib opencv_ml247.lib opencv_video247.lib opencv_features2d247.lib opencv_calib3d247.lib opencv_objdetect247.lib opencv_contrib247.lib opencv_legacy247.lib opencv_flann247.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\bin2.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Dyablo\Desktop\BAM2\Debug\bin2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Dyablo\Desktop\BAM2\Debug\bin2.lib" /MACHINE:X86 Debug\Direct_Access_Image.obj
+         Debug\Direct_Access_Image_Sample.obj
+         Debug\stdafx.obj
+     1>Direct_Access_Image.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/INCREMENTAL:NO' specification
+         Direct_Access_Image_Sample.vcxproj -> C:\Users\Dyablo\Desktop\BAM2\Debug\bin2.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\Dyablo\Desktop\BAM2\Debug\bin2.exe;#1" /manifest Debug\bin2.exe.intermediate.manifest
        FinalizeBuildStatus:
          Deleting file "Debug\Direct_Access_Image_Sample.unsuccessfulbuild".
          Touching "Debug\Direct_Access_Image_Sample.lastbuildstate".
-     1>Done Building Project "C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Direct_Access_Image_Sample.vcxproj" (build target(s)).
+     1>Done Building Project "C:\Users\Dyablo\Desktop\BAM2\Direct_Access_Image_Sample.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.11
+Time Elapsed 00:00:03.52

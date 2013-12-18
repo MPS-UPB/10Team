@@ -1,12 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>C:\Users\Dyablo\Desktop\Proiect_MPS_luni_17\Proiect_MPS\teo.jpg C:\Users\Dyablo\Desktop\Proiect_MPS_luni_17\Proiect_MPS\teoBwF.tif C:\Users\Dyablo\Desktop\Proiect_MPS_luni_17\Proiect_MPS\teoCONFwF.tif</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Users\Dyablo\Desktop\Binarizare3\Binarizare3\img\H02.png  C:\Users\Dyablo\Desktop\teoBwF.tif C:\Users\Dyablo\Desktop\teoCONFwF.tif</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
     <LocalDebuggerEnvironment>D:\OpenCV2.4.2\opencv\build\x86\vc10\bin</LocalDebuggerEnvironment>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>Color_Target.jpg</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>C:\Users\Dyablo\Desktop\Binarizare3\Binarizare3\img\H02.png  C:\Users\Dyablo\Desktop\teoBwF.tif C:\Users\Dyablo\Desktop\teoCONFwF.tif</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+    <LocalDebuggerEnvironment>D:\OpenCV2.4.2\opencv\build\x86\vc10\bin
+$(LocalDebuggerEnvironment)</LocalDebuggerEnvironment>
   </PropertyGroup>
 </Project>
