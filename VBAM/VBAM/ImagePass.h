@@ -17,8 +17,8 @@ public:
 
 	virtual void processImage(cv::Mat image, cv::Mat &confidence) = 0;
 
-	static void addValue(uchar &var, int val);
-	static uchar &getConfidence(cv::Mat confidence, int i, int j);
+	static float &getConfidence(cv::Mat confidence, int i, int j);
+	static void setConfidence(cv::Mat confidence, int i, int j, float value);
 	static PixelColor getPixelColor(cv::Mat image, int i, int j);
 };
 

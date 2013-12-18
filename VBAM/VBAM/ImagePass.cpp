@@ -10,24 +10,19 @@ ImagePass::~ImagePass(void)
 {
 }
 
-void ImagePass::addValue(uchar &var, int val)
+float &ImagePass::getConfidence(cv::Mat confidence, int i, int j)
 {
-	int a = (int)var + val;
-
-	a = a < 0? 0 : a;
-	a = a > 255 ? 255 : a;
-
-	var = (uchar)a;
+	return confidence.at<float>(i, j);
 }
 
-uchar &ImagePass::getConfidence(cv::Mat confidence, int i, int j)
+void ImagePass::setConfidence(cv::Mat confidence, int i, int j, float value)
 {
-	return confidence.at<uchar>(i, j);
+	confidence.at<float>(i, j) = value;
 }
 
 PixelColor ImagePass::getPixelColor(cv::Mat image, int i, int j)
 {
-	uchar val = image.at<uchar>(i, j);
+	float val = image.at<uchar>(i, j);
 
 	if(val == 0)
 		return PIXEL_BLACK;

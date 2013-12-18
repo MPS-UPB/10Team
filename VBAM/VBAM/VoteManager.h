@@ -1,6 +1,9 @@
 #pragma once
 
+
 #include <opencv\highgui.h>
+#include <thread>
+#include <mutex>
 #include "VotePass.h"
 
 class VoteManager
@@ -14,6 +17,9 @@ public:
 
 	static void init(int imageWidth, int imageHeight);
 	static cv::Mat run();
+
+private:
+	static void processImage(int index);
 
 public:
 	static VotePass *votePass;
@@ -29,5 +35,8 @@ private:
 	
 	static cv::Mat blackConfidence;
 	static cv::Mat whiteConfidence;
+
+	static std::vector<std::thread*> processThreads;
+	static std::mutex mtx;
 };
 

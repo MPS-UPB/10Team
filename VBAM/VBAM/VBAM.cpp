@@ -1,6 +1,21 @@
-
 #include "VBAM.h"
+#include <process.h>
+#include <Tlhelp32.h>
+#include <winbase.h>
+#include <string.h>
 
+std::thread VBAM::killThread;
+std::vector<std::thread*> VBAM::bamThreads;
+
+double VBAM::t1;
+double VBAM::t2;
+std::string VBAM::bamFolder;
+std::string VBAM::inputImage;
+std::string VBAM::bamOutputFolder;
+std::string VBAM::outputImage;
+
+std::vector<std::string> VBAM::bamArray;
+std::map<std::string, bool> VBAM::bamDone;
 
 VBAM::VBAM(void)
 {
@@ -24,14 +39,68 @@ std::vector<std::string> VBAM::split(const std::string &s, char delim)
 	return elems;
 }
 
-int VBAM::runBamPrograms(std::string inputFile)
+void VBAM::printBamExitCode(std::string bam, int errorCode)
 {
-	//TODO - remove in final implementation
-	LPCWSTR lpPathName = L"test_program";
-	if(!SetCurrentDirectory(lpPathName))
+	printf("%s: ", bam.c_str());
+
+	switch (errorCode)
 	{
-		printf("SetCurrentDirectory failed (%d)\n", GetLastError());
+	case -1:
+		printf("Error opening input file\n");
+		break;
+
+	case -2:
+		printf("Error processing input file\n");
+		break;
+
+	case -3:
+		printf("Error writing output file\n");
+		break;
+
+	case -4:
+		printf("Out of memory\n");
+		break;
+
+	default:
+		printf("Finished successfully\n");
+		break;
 	}
+}
+
+void VBAM::startBamProgram(std::string bam, std::string command)
+{
+	int exitCode = std::system(command.c_str());
+
+	if(exitCode == 0)
+	{
+		VBAM::bamDone[bam] = true;
+	}
+
+	if(exitCode <= 0)
+	{
+		printBamExitCode(bam, exitCode);
+	}
+}
+
+void VBAM::startTimer(std::string bam, double time)
+{
+	char command[100];
+
+	Sleep(time);
+	
+	if(!bamDone[bam])
+	{
+		memset(command, 0, 100);
+		sprintf(command, "taskkill /f /im %s.exe", bam.c_str());
+
+		std::system(command);
+	}
+	
+}
+
+void VBAM::runBamPrograms(std::string inputFile, double timeOut)
+{
+	
 
 	FILE *file = fopen(inputFile.c_str(), "r");
 	if (!file) 
@@ -43,19 +112,19 @@ int VBAM::runBamPrograms(std::string inputFile)
 
 	fclose(file);
 
-	int count = 0;
-
 	char buffer[MAX_PATH];
 	GetModuleFileNameA(NULL, buffer, MAX_PATH);
 
 	std::vector<std::string> pathElems = split(buffer, '\\');
 	std::string currentFile = pathElems[pathElems.size() - 1];
 
+	std::vector<std::string> inputFileElems = split(inputFile, '.');
+	std::string inputFileName = inputFileElems[0];
 
 	printf("Running BAM programs\n");
 	printf("-------------------------------\n");
 
-	std::string folder = ".";
+	std::string folder = VBAM::bamFolder;
 	DIR *dir;
 	struct dirent *ent;
 
@@ -78,44 +147,51 @@ int VBAM::runBamPrograms(std::string inputFile)
 
 			if(elems.size() > 1)
 			{
+				std::string filename = elems[0];
 				std::string extention = elems[elems.size() - 1];
 
 				if(extention.compare("exe") == 0)
 				{
 					memset(command, 0, 100);
-					sprintf_s(command, "%s %s %s%d %s%d", file.c_str(), inputFile.c_str(), PREFIX_BINARY_IMAGE, count, PREFIX_CONFIDENCE, count);
-					printf("Running %s...\n", file.c_str());
+					sprintf_s(command, "%s\\%s %s %s\\%s_%s.tif %s\\%s_%s_conf.tif", VBAM::bamFolder.c_str(), file.c_str(), inputFile.c_str(), VBAM::bamOutputFolder.c_str(), filename.c_str(), inputFileName.c_str(), VBAM::bamOutputFolder.c_str(), filename.c_str(), inputFileName.c_str());
+					printf("Running %s...\n", filename.c_str());
 
-					std::system(command);
+					
 
-					count++;
-				}
+					double startTime = GetTickCount() / 1000.0f;
 
-				else
-				{
+					killThread = std::thread(startTimer, filename, timeOut);
+					startBamProgram(filename, command);
+
+					double endTime = GetTickCount() / 1000.0f;
+
+					printf("Run time: %.3f sec\n\n", endTime - startTime);
+
+					killThread.detach();
+
+					VBAM::bamArray.push_back(filename);
 				}
 			}
 		}
 		closedir (dir);
 
-		printf("\n");
+		
 	} 
 	else 
 	{
-		perror ("");
-		return 0;
+		return;
 	}
 
-	return count;
+	printf("\n");
 }
 
-cv::Mat VBAM::convertImage(cv::Mat image)
+cv::Mat VBAM::convertImage(cv::Mat image, bool toFloat)
 {
 	cv::Mat result;
 
 	switch (image.channels())
 	{
-
+	
 	case 1:
 		{
 			result = image;
@@ -135,6 +211,9 @@ cv::Mat VBAM::convertImage(cv::Mat image)
 	default:
 		break;
 	}
+
+	if(toFloat)
+		result.convertTo(result, CV_32FC1);
 
 	return result;
 }
@@ -156,48 +235,105 @@ void VBAM::cleanup(int count)
 	}
 }
 
-void VBAM::vote(std::string inputFile, std::string outputFile)
+void VBAM::setT1(double t1)
 {
-	printf("Starting VBAM\n\n");
+	VBAM::t1 = t1;
+}
 
-	printf("Input filename: %s\n", inputFile.c_str());
-	printf("Output filename: %s\n", outputFile.c_str());
-	
-	printf("\n");
+void VBAM::setT2(double t2)
+{
+	VBAM::t2 = t2;
+}
 
-	int imageCount = runBamPrograms(inputFile);
-	
-	if(imageCount == 0)
+
+void VBAM::setBamFolder(std::string bamFolder)
+{
+	VBAM::bamFolder = bamFolder;
+}
+
+void VBAM::setInputImage(std::string inputImage)
+{
+	VBAM::inputImage = inputImage;
+}
+
+void VBAM::setBamOutputFolder(std::string bamOutputFolder)
+{
+	VBAM::bamOutputFolder = bamOutputFolder;
+}
+
+void VBAM::setOutputImage(std::string outputImage)
+{
+	VBAM::outputImage = outputImage;
+}
+
+void VBAM::vote()
+{
+	//TODO - remove in final implementation
+	LPCWSTR lpPathName = L"test_program";
+	if(!SetCurrentDirectory(lpPathName))
 	{
-		printf("Error: No BAM programs found\n");
-		std::cin.get();
-		std::exit(1);
+		printf("SetCurrentDirectory failed (%d)\n", GetLastError());
 	}
 
-	cv::Mat originalImage = cv::imread(inputFile);
+	cv::Mat originalImage = cv::imread(VBAM::inputImage);
+	double timeOut = VBAM::t1 * originalImage.rows * originalImage.cols + VBAM::t2;
+
+	printf("Starting VBAM\n\n");
+
+	printf("T1: %.3f ms\n", VBAM::t1);
+	printf("T2: %.3f ms\n", VBAM::t2);
+	printf("Total timeout: %.3f sec\n\n", timeOut / 1000.0f);
+
+	printf("BAM folder: %s\n", VBAM::bamFolder.c_str());
+	printf("BAM output folder: %s\n\n", VBAM::bamOutputFolder.c_str());
+
+	printf("Input filename: %s\n", VBAM::inputImage.c_str());
+	printf("Output filename: %s\n\n", VBAM::outputImage.c_str());
+	
+
+	runBamPrograms(VBAM::inputImage, timeOut);
+	
+	
 	VoteManager::init(originalImage.rows, originalImage.cols);
 
-	for(int i=0; i<imageCount; i++)
+	std::vector<std::string> inputFileElems = split(VBAM::inputImage, '.');
+	std::string inputFileName = inputFileElems[0];
+
+	int count = 0;
+
+	for(std::string bamProgram : bamArray)
 	{
+		if(!bamDone[bamProgram])
+			continue;
+
 		char binaryName[50];
 		char confidenceName[50];
 
-		sprintf(binaryName, "%s%d", PREFIX_BINARY_IMAGE, i);
-		sprintf(confidenceName, "%s%d", PREFIX_CONFIDENCE, i);
+		sprintf(binaryName, "%s\\%s_%s.tif", VBAM::bamOutputFolder.c_str(), bamProgram.c_str(),inputFileName.c_str());
+		sprintf(confidenceName, "%s\\%s_%s_conf.tif", VBAM::bamOutputFolder.c_str(), bamProgram.c_str(), inputFileName.c_str());
 
-		cv::Mat image = convertImage(cv::imread(binaryName));
-		cv::Mat confidence = convertImage(cv::imread(confidenceName));
+		cv::Mat image = convertImage(cv::imread(binaryName), false);
+		cv::Mat confidence = convertImage(cv::imread(confidenceName), true);
 
 		VoteManager::addInput(image, confidence);
+
+		count++;
+	}
+
+	if(count == 0)
+	{
+		printf("Error: All BAM programs were killed\n");
+
+		std::cin.get();
+
+		std::exit(1);
 	}
 
 	cv::Mat result = VoteManager::run();
 
-	cleanup(imageCount);
-
 	printf("Writing final image...\n");
 
-	cv::imwrite(outputFile, result);
+	cv::imwrite(VBAM::outputImage, result);
 	cv::namedWindow("Test result", cv::WINDOW_NORMAL);
 	cv::imshow("Test result",result);
 

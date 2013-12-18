@@ -1,0 +1,98 @@
+﻿Build started 15-Dec-13 4:14:13 PM.
+     1>Project "C:\Users\Alecsa\workspace\VBAM\VBAM\VBAM.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc110.pdb" /Gd /TP /errorReport:prompt DilationPass.cpp EdgeDetectionPass.cpp EmptyPass.cpp ErosionPass.cpp ImagePass.cpp main.cpp NoiseRemovalPass.cpp VBAM.cpp VoteManager.cpp VotePass.cpp
+         VotePass.cpp
+         VoteManager.cpp
+         VBAM.cpp
+         NoiseRemovalPass.cpp
+         main.cpp
+         ImagePass.cpp
+         ErosionPass.cpp
+         EmptyPass.cpp
+         EdgeDetectionPass.cpp
+         DilationPass.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Alecsa\workspace\VBAM\x64\Debug\VBAM.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Users\vlad\Dropbox\Facultate\Anul 4\MPS\Proiect\VBAM\VBAM\External\opencv\lib" opencv_core247d.lib opencv_imgproc247d.lib opencv_highgui247d.lib opencv_ml247d.lib opencv_video247d.lib opencv_features2d247d.lib opencv_calib3d247d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Alecsa\workspace\VBAM\x64\Debug\VBAM.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Alecsa\workspace\VBAM\x64\Debug\VBAM.lib" /MACHINE:X64 x64\Debug\DilationPass.obj
+         x64\Debug\EdgeDetectionPass.obj
+         x64\Debug\EmptyPass.obj
+         x64\Debug\ErosionPass.obj
+         x64\Debug\ImagePass.obj
+         x64\Debug\main.obj
+         x64\Debug\NoiseRemovalPass.obj
+         x64\Debug\VBAM.obj
+         x64\Debug\VoteManager.obj
+         x64\Debug\VotePass.obj
+     1>ImagePass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>NoiseRemovalPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z) referenced in function "public: virtual void __cdecl NoiseRemovalPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@NoiseRemovalPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>DilationPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>EdgeDetectionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>EmptyPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::fastFree(void *)" (?fastFree@cv@@YAXPEAX@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "public: __cdecl cv::_InputArray::_InputArray(class cv::Mat const &)" (??0_InputArray@cv@@QEAA@AEBVMat@1@@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_InputArray::_InputArray(class cv::Mat const &)" (??0_InputArray@cv@@QEAA@AEBVMat@1@@Z)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_InputArray::_InputArray(class cv::Mat const &)" (??0_InputArray@cv@@QEAA@AEBVMat@1@@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_InputArray::_InputArray(class cv::Mat const &)" (??0_InputArray@cv@@QEAA@AEBVMat@1@@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "public: __cdecl cv::_OutputArray::_OutputArray(class cv::Mat &)" (??0_OutputArray@cv@@QEAA@AEAVMat@1@@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_OutputArray::_OutputArray(class cv::Mat &)" (??0_OutputArray@cv@@QEAA@AEAVMat@1@@Z)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_OutputArray::_OutputArray(class cv::Mat &)" (??0_OutputArray@cv@@QEAA@AEAVMat@1@@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::_OutputArray::_OutputArray(class cv::Mat &)" (??0_OutputArray@cv@@QEAA@AEAVMat@1@@Z)
+     1>ImagePass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ) referenced in function "public: void __cdecl cv::Mat::release(void)" (?release@Mat@cv@@QEAAXXZ)
+     1>EdgeDetectionPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>EmptyPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::deallocate(void)" (?deallocate@Mat@cv@@QEAAXXZ)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>VotePass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z) referenced in function "public: __cdecl cv::Mat::Mat(class cv::Mat const &)" (??0Mat@cv@@QEAA@AEBV01@@Z)
+     1>EdgeDetectionPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>EmptyPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "public: void __cdecl cv::Mat::copySize(class cv::Mat const &)" (?copySize@Mat@cv@@QEAAXAEBV12@@Z)
+     1>VotePass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>ImagePass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>NoiseRemovalPass.obj : error LNK2019: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z) referenced in function "void __cdecl `dynamic initializer for 'public: static class std::_Iostream_error_category std::_Error_objects<int>::_Iostream_object''(void)" (??__E?_Iostream_object@?$_Error_objects@H@std@@2V_Iostream_error_category@2@A@@YAXXZ)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>DilationPass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>EdgeDetectionPass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>EmptyPass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "int __cdecl cv::_interlockedExchangeAdd(int *,int)" (?_interlockedExchangeAdd@cv@@YAHPEAHH@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::erode(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?erode@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::erode(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?erode@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::dilate(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?dilate@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::dilate(class cv::_InputArray const &,class cv::_OutputArray const &,class cv::_InputArray const &,class cv::Point_<int>,int,int,class cv::Scalar_<double> const &)" (?dilate@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@0V?$Point_@H@1@HHAEBV?$Scalar_@N@1@@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::namedWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?namedWindow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::namedWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?namedWindow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::namedWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?namedWindow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "void __cdecl cv::namedWindow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?namedWindow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z)
+     1>DilationPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z) referenced in function "public: virtual void __cdecl DilationPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@DilationPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>ErosionPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z)
+     1>NoiseRemovalPass.obj : error LNK2001: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z)
+     1>VBAM.obj : error LNK2001: unresolved external symbol "void __cdecl cv::imshow(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &)" (?imshow@cv@@YAXAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@@Z)
+     1>ImagePass.obj : error LNK2019: unresolved external symbol "public: __cdecl cv::Exception::Exception(int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (??0Exception@cv@@QEAA@HAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00H@Z) referenced in function "public: unsigned char & __cdecl cv::Mat::at<unsigned char>(int,int)" (??$at@E@Mat@cv@@QEAAAEAEHH@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "public: __cdecl cv::Exception::Exception(int,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (??0Exception@cv@@QEAA@HAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@00H@Z)
+     1>ImagePass.obj : error LNK2019: unresolved external symbol "public: virtual __cdecl cv::Exception::~Exception(void)" (??1Exception@cv@@UEAA@XZ) referenced in function "public: unsigned char & __cdecl cv::Mat::at<unsigned char>(int,int)" (??$at@E@Mat@cv@@QEAAAEAEHH@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "public: virtual __cdecl cv::Exception::~Exception(void)" (??1Exception@cv@@UEAA@XZ)
+     1>ImagePass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::error(class cv::Exception const &)" (?error@cv@@YAXAEBVException@1@@Z) referenced in function "public: unsigned char & __cdecl cv::Mat::at<unsigned char>(int,int)" (??$at@E@Mat@cv@@QEAAAEAEHH@Z)
+     1>VoteManager.obj : error LNK2001: unresolved external symbol "void __cdecl cv::error(class cv::Exception const &)" (?error@cv@@YAXAEBVException@1@@Z)
+     1>NoiseRemovalPass.obj : error LNK2019: unresolved external symbol "void __cdecl cv::fastNlMeansDenoising(class cv::_InputArray const &,class cv::_OutputArray const &,float,int,int)" (?fastNlMeansDenoising@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@MHH@Z) referenced in function "public: virtual void __cdecl NoiseRemovalPass::processImage(class cv::Mat,class cv::Mat &)" (?processImage@NoiseRemovalPass@@UEAAXVMat@cv@@AEAV23@@Z)
+     1>VBAM.obj : error LNK2019: unresolved external symbol cvWaitKey referenced in function "public: static void __cdecl VBAM::vote(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?vote@VBAM@@SAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+     1>VBAM.obj : error LNK2019: unresolved external symbol "class cv::Mat __cdecl cv::imread(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,int)" (?imread@cv@@YA?AVMat@1@AEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@H@Z) referenced in function "public: static void __cdecl VBAM::vote(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?vote@VBAM@@SAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+     1>VBAM.obj : error LNK2019: unresolved external symbol "bool __cdecl cv::imwrite(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > const &,class cv::_InputArray const &,class std::vector<int,class std::allocator<int> > const &)" (?imwrite@cv@@YA_NAEBV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@AEBV_InputArray@1@AEBV?$vector@HV?$allocator@H@std@@@3@@Z) referenced in function "public: static void __cdecl VBAM::vote(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?vote@VBAM@@SAXV?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+     1>VBAM.obj : error LNK2019: unresolved external symbol "void __cdecl cv::cvtColor(class cv::_InputArray const &,class cv::_OutputArray const &,int,int)" (?cvtColor@cv@@YAXAEBV_InputArray@1@AEBV_OutputArray@1@HH@Z) referenced in function "private: static class cv::Mat __cdecl VBAM::convertImage(class cv::Mat)" (?convertImage@VBAM@@CA?AVMat@cv@@V23@@Z)
+     1>VoteManager.obj : error LNK2019: unresolved external symbol "public: class cv::Mat & __cdecl cv::Mat::operator=(class cv::Scalar_<double> const &)" (??4Mat@cv@@QEAAAEAV01@AEBV?$Scalar_@N@1@@Z) referenced in function "public: __cdecl cv::Mat::Mat(int,int,int,class cv::Scalar_<double> const &)" (??0Mat@cv@@QEAA@HHHAEBV?$Scalar_@N@1@@Z)
+     1>VoteManager.obj : error LNK2019: unresolved external symbol "public: void __cdecl cv::Mat::create(int,int const *,int)" (?create@Mat@cv@@QEAAXHPEBHH@Z) referenced in function "public: void __cdecl cv::Mat::create(int,int,int)" (?create@Mat@cv@@QEAAXHHH@Z)
+     1>C:\Users\Alecsa\workspace\VBAM\x64\Debug\VBAM.exe : fatal error LNK1120: 20 unresolved externals
+     1>Done Building Project "C:\Users\Alecsa\workspace\VBAM\VBAM\VBAM.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:24.83
