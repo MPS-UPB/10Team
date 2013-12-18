@@ -1,0 +1,13 @@
+﻿Build started 12/18/2013 5:17:20 AM.
+     1>Project "C:\Users\Mihai\Desktop\Proiect MPS\Schelet cod\Direct_Access_Image_Sample.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Release\Direct_Access_Image_Sample.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"StdAfx.h" /Fp"Release\Direct_Access_Image_Sample.pch" /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+     1>c:\users\mihai\desktop\proiect mps\schelet cod\stdafx.h(18): fatal error C1083: Cannot open include file: 'opencv2/imgproc/imgproc.hpp': No such file or directory
+     1>Done Building Project "C:\Users\Mihai\Desktop\Proiect MPS\Schelet cod\Direct_Access_Image_Sample.vcxproj" (build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.18

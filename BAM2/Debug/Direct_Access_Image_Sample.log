@@ -1,0 +1,18 @@
+﻿Build started 18.12.2013 07:14:56.
+     1>Project "C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Direct_Access_Image_Sample.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Direct_Access_Image_Sample.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+         Direct_Access_Image_Sample.vcxproj -> C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Debug\bin2.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\Direct_Access_Image_Sample.unsuccessfulbuild".
+         Touching "Debug\Direct_Access_Image_Sample.lastbuildstate".
+     1>Done Building Project "C:\Users\Dyablo\Desktop\Proiect MPS\FINAAALFINAAAAL\Schelet cod\Direct_Access_Image_Sample.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.11
