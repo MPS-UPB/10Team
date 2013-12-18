@@ -1,6 +1,7 @@
 #pragma once
 
 #include <opencv\cv.h>
+#include <string>
 
 enum PixelColor
 {
@@ -20,5 +21,8 @@ public:
 	static float &getConfidence(cv::Mat confidence, int i, int j);
 	static void setConfidence(cv::Mat confidence, int i, int j, float value);
 	static PixelColor getPixelColor(cv::Mat image, int i, int j);
+
+public:
+	std::string filterName;
 };
 

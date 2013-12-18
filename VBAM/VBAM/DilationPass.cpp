@@ -4,6 +4,7 @@
 
 DilationPass::DilationPass(void)
 {
+	ImagePass::filterName = "Dilation filter";
 }
 
 
@@ -18,7 +19,7 @@ void DilationPass::processImage(cv::Mat image, cv::Mat &confidence)
 	
 	cv::dilate(image, dilatedImage, cv::Mat());
 
-	cv::imwrite("final4.png", dilatedImage);
+	//cv::imwrite("dilated.png", dilatedImage);
 
 	//Compari fiecare pixel si cresti/scazi confidenta dupa ce criterii vrei
 	for(int i=0; i<image.rows; i++)
@@ -31,9 +32,7 @@ void DilationPass::processImage(cv::Mat image, cv::Mat &confidence)
 			float conf = getConfidence(confidence, i, j);
 
 			if(color == otherColor)
-				conf += 200;
-			else
-				conf -= 200;
+				conf *= 1.5;
 
 			setConfidence(confidence, i, j, conf);
 		}

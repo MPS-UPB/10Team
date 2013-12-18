@@ -5,6 +5,7 @@
 
 GradientPass::GradientPass(void)
 {
+	ImagePass::filterName = "Gradient filter";
 }
 
 
@@ -19,7 +20,8 @@ void GradientPass::processImage(cv::Mat image, cv::Mat &confidence)
 	
 	cv::morphologyEx(image, im1, cv::MORPH_CLOSE, cv::Mat());
 	cv::morphologyEx(im1, im2, cv::MORPH_GRADIENT, cv::Mat());
-	cv::imwrite("ceva8.png", im2);
+	
+	//cv::imwrite("ceva8.png", im2);
 
 	//Compari fiecare pixel si cresti/scazi confidenta dupa ce criterii vrei
 	for(int i=0; i<image.rows; i++)
@@ -32,7 +34,7 @@ void GradientPass::processImage(cv::Mat image, cv::Mat &confidence)
 			float conf = getConfidence(confidence, i, j);
 
 			if(otherColor == PIXEL_WHITE)
-				conf += 350;
+				conf *= 10;
 
 			setConfidence(confidence, i, j, conf);
 		}

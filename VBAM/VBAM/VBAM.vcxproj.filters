@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\Filters">
+      <UniqueIdentifier>{e4b69be6-e380-4e90-8ed0-43682965521e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -60,17 +63,17 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="ErosionPass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DilationPass.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
-    <ClCompile Include="NoiseRemovalPass.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="ErosionPass.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
     <ClCompile Include="GradientPass.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Filters</Filter>
+    </ClCompile>
+    <ClCompile Include="NoiseRemovalPass.cpp">
+      <Filter>Source Files\Filters</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

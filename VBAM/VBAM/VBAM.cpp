@@ -312,17 +312,46 @@ void VBAM::vote()
 		sprintf(binaryName, "%s\\%s_%s.tif", VBAM::bamOutputFolder.c_str(), bamProgram.c_str(),inputFileName.c_str());
 		sprintf(confidenceName, "%s\\%s_%s_conf.tif", VBAM::bamOutputFolder.c_str(), bamProgram.c_str(), inputFileName.c_str());
 
+		bool fileMissing = false;
+
+		FILE *file = fopen(binaryName, "r");
+		if (!file) 
+		{
+			char message[100];
+			sprintf(message, "Error: File %s not found\n", binaryName);
+			printf(message);
+
+			fileMissing = true;
+		}
+		else
+			fclose(file);
+
+		file = fopen(confidenceName, "r");
+		if (!file) 
+		{
+			char message[100];
+			sprintf(message, "Error: File %s not found\n", confidenceName);
+			printf(message);
+
+			fileMissing = true;
+		}
+		else
+			fclose(file);
+
+		if(fileMissing)
+			continue;
+
 		cv::Mat image = convertImage(cv::imread(binaryName), false);
 		cv::Mat confidence = convertImage(cv::imread(confidenceName), true);
 
-		VoteManager::addInput(image, confidence);
+		VoteManager::addInput(image, confidence, binaryName);
 
 		count++;
 	}
 
 	if(count == 0)
 	{
-		printf("Error: All BAM programs were killed\n");
+		printf("Error: All BAM programs were killed or no files found\n");
 
 		std::cin.get();
 
